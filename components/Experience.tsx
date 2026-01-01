@@ -29,7 +29,7 @@ export const Experience: React.FC = () => {
         </div>
 
         {/* Timeline Content */}
-        <div className="md:col-span-8 space-y-24 relative border-l border-zinc-200 dark:border-zinc-800 ml-2 md:ml-0 pl-8 md:pl-12 transition-colors duration-300">
+        <div className="md:col-span-8 space-y-12 relative border-l border-zinc-200 dark:border-zinc-800 ml-2 md:ml-0 pl-8 md:pl-12 transition-colors duration-300">
             
           {RESUME_DATA.experience.map((job, index) => (
             <motion.div 
@@ -49,7 +49,7 @@ export const Experience: React.FC = () => {
                     }
                 }
               }}
-              className="relative"
+              className="relative group"
             >
               {/* Timeline Dot */}
               <motion.div 
@@ -57,47 +57,54 @@ export const Experience: React.FC = () => {
                     hidden: { scale: 0, opacity: 0 },
                     visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 200 } }
                 }}
-                className="absolute -left-[41px] md:-left-[57px] top-2 w-5 h-5 rounded-full border-4 border-zinc-50 dark:border-black z-10 bg-cyan-500"
+                className="absolute -left-[41px] md:-left-[57px] top-8 w-5 h-5 rounded-full border-4 border-zinc-50 dark:border-black z-10 bg-cyan-500"
               />
 
-              <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
-                <motion.h3 
-                  variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-                  className="text-2xl font-bold text-zinc-800 dark:text-zinc-100"
-                >
-                    {job.role}
-                </motion.h3>
-                <motion.span 
-                  variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-                  className="font-mono text-cyan-600 dark:text-cyan-500 text-sm mt-1 md:mt-0"
-                >
-                    {job.period}
-                </motion.span>
-              </div>
-              
-              <motion.div 
-                variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-                className="text-xl text-zinc-600 dark:text-zinc-400 font-medium mb-4 flex items-center gap-2"
+              {/* Card Wrapper for Hover Effect */}
+              <motion.div
+                whileHover={{ scale: 1.02, y: -5 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="p-6 -ml-6 rounded-2xl border border-transparent hover:border-cyan-500/30 hover:bg-white dark:hover:bg-zinc-900/50 hover:shadow-lg dark:hover:shadow-cyan-900/10 transition-colors duration-300"
               >
-                 {job.company}
-                 <span className="text-xs px-2 py-0.5 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-500">{job.location}</span>
-              </motion.div>
-
-              <ul className="space-y-3">
-                {job.description.map((desc, i) => (
-                  <motion.li 
-                    key={i}
-                    variants={{
-                        hidden: { opacity: 0, x: -10 },
-                        visible: { opacity: 1, x: 0 }
-                    }}
-                    className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm md:text-base flex items-start"
+                  <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
+                    <motion.h3 
+                      variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+                      className="text-2xl font-bold text-zinc-800 dark:text-zinc-100"
+                    >
+                        {job.role}
+                    </motion.h3>
+                    <motion.span 
+                      variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+                      className="font-mono text-cyan-600 dark:text-cyan-500 text-sm mt-1 md:mt-0"
+                    >
+                        {job.period}
+                    </motion.span>
+                  </div>
+                  
+                  <motion.div 
+                    variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+                    className="text-xl text-zinc-600 dark:text-zinc-400 font-medium mb-4 flex items-center gap-2"
                   >
-                    <span className="mr-3 text-cyan-500/50 mt-1.5">•</span>
-                    {desc}
-                  </motion.li>
-                ))}
-              </ul>
+                     {job.company}
+                     <span className="text-xs px-2 py-0.5 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-500">{job.location}</span>
+                  </motion.div>
+
+                  <ul className="space-y-3">
+                    {job.description.map((desc, i) => (
+                      <motion.li 
+                        key={i}
+                        variants={{
+                            hidden: { opacity: 0, x: -10 },
+                            visible: { opacity: 1, x: 0 }
+                        }}
+                        className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm md:text-base flex items-start"
+                      >
+                        <span className="mr-3 text-cyan-500/50 mt-1.5">•</span>
+                        {desc}
+                      </motion.li>
+                    ))}
+                  </ul>
+              </motion.div>
             </motion.div>
           ))}
         </div>
